@@ -8,23 +8,25 @@ To write a program to implement the Decision Tree Regressor Model for Predicting
 2. Anaconda – Python 3.7 Installation / Jupyter notebook
 
 ## Algorithm
-1. import dataset and get data info
-2. check for null values
-3. Map values for position column
-4. Split the dataset into train and test set
-5. Import decision tree regressor and fit it for data 
-6. Calculate MSE,R2 and y predict.
+1.Import the libraries and read the data frame using pandas.
+
+2.Calculate the null values present in the dataset and apply label encoder.
+
+3.Determine test and training data set and apply decison tree regression in dataset.
+
+4.calculate Mean square error,data prediction and r2.
+
 
 ## Program:
 ```
-
+/*
 Program to implement the Decision Tree Regressor Model for Predicting the Salary of the Employee.
 Developed by: YUVARAJ B
 RegisterNumber:  212222230182
-
+*/
 
 import pandas as pd
-data=pd.read_csv("/content/Salary.csv")
+data=pd.read_csv("Salary.csv")
 
 data.head()
 
@@ -33,16 +35,18 @@ data.info()
 data.isnull().sum()
 
 from sklearn.preprocessing import LabelEncoder
-l0=LabelEncoder()
+le=LabelEncoder()
 
-data["Position"]=l0.fit_transform(data['Position'])
+data["Position"]=le.fit_transform(data["Position"])
 data.head()
 
 x=data[["Position","Level"]]
-y=data["Salary"]
+x.head()
+
+y=data[["Salary"]]
 
 from sklearn.model_selection import train_test_split
-x_train,x_test,y_train,y_test=train_test_split(x,y,test_size=0.2,random_state=2)
+x_train, x_test, y_train, y_test=train_test_split(x,y,test_size=0.2,random_state=2)
 
 from sklearn.tree import DecisionTreeRegressor
 dt=DecisionTreeRegressor()
@@ -50,7 +54,7 @@ dt.fit(x_train,y_train)
 y_pred=dt.predict(x_test)
 
 from sklearn import metrics
-mse=metrics.mean_squared_error(y_test,y_pred)
+mse=metrics.mean_squared_error(y_test, y_pred)
 mse
 
 r2=metrics.r2_score(y_test,y_pred)
@@ -60,31 +64,38 @@ dt.predict([[5,6]])
 ```
 
 ## Output:
-
 ### data.head()
+![71](https://github.com/A-Thiyagarajan/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/118707693/701a0240-2dc4-459b-9d7e-0fb9a977f2a9)
 
-![Decision Tree Regressor Model for Predicting the Salary of the Employee](ml701.png)
 
 ### data.info()
 
-![Decision Tree Regressor Model for Predicting the Salary of the Employee](ml702.png)
+![72](https://github.com/A-Thiyagarajan/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/118707693/3d502d65-0463-4246-bf6c-f4c89bd6ee4f)
 
-### isnull() and sum()
 
-![Decision Tree Regressor Model for Predicting the Salary of the Employee](ml703.png)
+### isnull() & sum() function 
 
-### data.head() for salary
-![Decision Tree Regressor Model for Predicting the Salary of the Employee](ml704.png)
+![73](https://github.com/A-Thiyagarajan/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/118707693/3f102049-0af8-426f-897c-a633bde21ea3)
 
-### MSE Value
+### data.head() for position 
 
-![Decision Tree Regressor Model for Predicting the Salary of the Employee](ml705.png)
+![74](https://github.com/A-Thiyagarajan/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/118707693/6b7f1fba-122e-4fb8-b11b-1224cd19b900)
 
-### r2 value 
-![Decision Tree Regressor Model for Predicting the Salary of the Employee](ml706.png)
 
-### data prediction
-![Decision Tree Regressor Model for Predicting the Salary of the Employee](ml707.png)
+### MSE value
+![75](https://github.com/A-Thiyagarajan/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/118707693/05839de3-0240-45d1-a3ff-1af78dba619f)
+
+
+
+### R2 value 
+
+![76](https://github.com/A-Thiyagarajan/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/118707693/35c7b65e-ab88-4ff9-b278-cb014706c3d2)
+
+
+### Prediction value
+![77](https://github.com/A-Thiyagarajan/Implementation-of-Decision-Tree-Regressor-Model-for-Predicting-the-Salary-of-the-Employee/assets/118707693/a7c48a48-3497-42a9-8744-88c10f5fd1ac)
+
+
 
 
 ## Result:
